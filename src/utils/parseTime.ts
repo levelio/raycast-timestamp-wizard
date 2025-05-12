@@ -36,14 +36,14 @@ export const parseTimeString = (input: string): Date | null => {
   try {
     const isoDate = parseISO(input);
     if (isValid(isoDate)) return isoDate;
-  } catch (_) { }
+  } catch (_) { /* empty */ }
 
   // 尝试各种日期格式
   for (const formatStr of TIME_FORMATS.filter(f => f !== "ISO")) {
     try {
       const date = parse(input, formatStr, new Date());
       if (isValid(date)) return date;
-    } catch (_) { }
+    } catch (_) { /* empty */ }
   }
 
   // 如果是yyyy-MM-dd格式，添加时间部分再试
@@ -51,7 +51,7 @@ export const parseTimeString = (input: string): Date | null => {
     try {
       const date = parse(`${input} 00:00:00`, "yyyy-MM-dd HH:mm:ss", new Date());
       if (isValid(date)) return date;
-    } catch (_) { }
+    } catch (_) { /* empty */ }
   }
 
   return null;
