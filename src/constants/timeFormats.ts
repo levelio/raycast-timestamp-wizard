@@ -12,5 +12,5 @@ export const TIME_FORMATS = [
   "MM/dd/yyyy HH:mm",
   "dd/MM/yyyy HH:mm:ss",
   "dd/MM/yyyy HH:mm",
-  "ISO"
+  "ISO",
 ];

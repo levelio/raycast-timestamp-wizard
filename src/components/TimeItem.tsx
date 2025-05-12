@@ -28,4 +28,4 @@ export const TimeItem: React.FC<{ item: TimeItemType }> = ({ item }) => {
       }
     />
   );
-}; 
+};

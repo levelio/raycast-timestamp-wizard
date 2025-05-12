@@ -13,4 +13,4 @@ export interface TimeItem {
 /**
  * 时间转换结果类型
  */
-export type ConversionResult = TimeItem[]; 
+export type ConversionResult = TimeItem[];

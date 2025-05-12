@@ -1,9 +1,4 @@
-import {
-  isValid,
-  fromUnixTime,
-  parse,
-  parseISO
-} from "date-fns";
+import { isValid, fromUnixTime, parse, parseISO } from "date-fns";
 import { TIME_FORMATS } from "../constants/timeFormats";
 
 /**
@@ -17,9 +12,10 @@ export const parseTimestamp = (input: string): Date | null => {
   if (isNaN(num)) return null;
 
   // 判断是毫秒还是秒级时间戳
-  const date = num > 10000000000
-    ? new Date(num) // 毫秒级时间戳
-    : fromUnixTime(num); // 秒级时间戳
+  const date =
+    num > 10000000000
+      ? new Date(num) // 毫秒级时间戳
+      : fromUnixTime(num); // 秒级时间戳
 
   return isValid(date) ? date : null;
 };
@@ -36,14 +32,18 @@ export const parseTimeString = (input: string): Date | null => {
   try {
     const isoDate = parseISO(input);
     if (isValid(isoDate)) return isoDate;
-  } catch (_) { /* empty */ }
+  } catch (_) {
+    /* empty */
+  }
 
   // 尝试各种日期格式
-  for (const formatStr of TIME_FORMATS.filter(f => f !== "ISO")) {
+  for (const formatStr of TIME_FORMATS.filter((f) => f !== "ISO")) {
     try {
       const date = parse(input, formatStr, new Date());
       if (isValid(date)) return date;
-    } catch (_) { /* empty */ }
+    } catch (_) {
+      /* empty */
+    }
   }
 
   // 如果是yyyy-MM-dd格式，添加时间部分再试
@@ -51,7 +51,9 @@ export const parseTimeString = (input: string): Date | null => {
     try {
       const date = parse(`${input} 00:00:00`, "yyyy-MM-dd HH:mm:ss", new Date());
       if (isValid(date)) return date;
-    } catch (_) { /* empty */ }
+    } catch (_) {
+      /* empty */
+    }
   }
 
   return null;
@@ -64,4 +66,4 @@ export const parseTimeString = (input: string): Date | null => {
  */
 export const isTimestamp = (input: string): boolean => {
   return /^\d+$/.test(input.trim());
-}; 
+};

@@ -1,14 +1,7 @@
 import { useState } from "react";
 import { ConversionResult } from "../types";
-import {
-  parseTimestamp,
-  parseTimeString,
-  isTimestamp
-} from "../utils/parseTime";
-import {
-  timestampToDateFormats,
-  dateToTimestamps
-} from "../utils/formatTime";
+import { parseTimestamp, parseTimeString, isTimestamp } from "../utils/parseTime";
+import { timestampToDateFormats, dateToTimestamps } from "../utils/formatTime";
 
 /**
  * 时间转换hook
@@ -64,6 +57,6 @@ export const useTimeConverter = () => {
 
   return {
     conversionResult,
-    convertTime
+    convertTime,
   };
-}; 
+};

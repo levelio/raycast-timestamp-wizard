@@ -12,22 +12,22 @@ export default function Command() {
   const [searchText, setSearchText] = useState<string>("");
   const { isShowingCurrentTime, setIsShowingCurrentTime, currentTimeItems } = useCurrentTime();
   const { conversionResult, convertTime } = useTimeConverter();
-  
+
   // 处理搜索文本变化
   const handleSearchTextChange = (text: string) => {
     setSearchText(text);
-    
+
     // 如果输入为空，切换到显示当前时间模式
     if (!text.trim()) {
       setIsShowingCurrentTime(true);
       return;
     }
-    
+
     // 如果有输入，关闭当前时间模式，进行转换
     setIsShowingCurrentTime(false);
     convertTime(text);
   };
-  
+
   // 确定当前应该显示哪些项目
   const displayItems: ConversionResult = isShowingCurrentTime ? currentTimeItems : conversionResult;
 
@@ -43,4 +43,4 @@ export default function Command() {
       ))}
     </List>
   );
-} 
+}

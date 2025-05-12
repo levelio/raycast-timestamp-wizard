@@ -42,6 +42,6 @@ export const useCurrentTime = () => {
   return {
     isShowingCurrentTime,
     setIsShowingCurrentTime,
-    currentTimeItems
+    currentTimeItems,
   };
-}; 
+};

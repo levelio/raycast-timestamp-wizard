@@ -114,4 +114,4 @@ export const dateToTimestamps = (date: Date): ConversionResult => {
       value: date.toISOString(),
     },
   ];
-}; 
+};
