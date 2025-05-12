@@ -45,9 +45,13 @@ export const useTimeConverter = () => {
         id: "invalid-input",
         icon: Icon.ExclamationMark,
         title: "Invalid Input",
-        subtitle: `Please enter a valid timestamp or date format. Supported: unix timestamp, ISO 8601, ${TIME_FORMATS.filter(f => f !== "ISO").slice(0, 2).join(", ")}...`,
+        subtitle: `Please enter a valid timestamp or date format. Supported: unix timestamp, ISO 8601, ${TIME_FORMATS.filter(
+          (f) => f !== "ISO",
+        )
+          .slice(0, 2)
+          .join(", ")}...`,
         accessory: "See all formats",
-        value: `Supported formats: unix timestamp (seconds/milliseconds), ISO 8601, ${TIME_FORMATS.filter(f => f !== "ISO").join(", ")}`,
+        value: `Supported formats: unix timestamp (seconds/milliseconds), ISO 8601, ${TIME_FORMATS.filter((f) => f !== "ISO").join(", ")}`,
       },
     ]);
 
