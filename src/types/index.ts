@@ -1,16 +1,18 @@
+import { Icon } from "@raycast/api";
+
 /**
- * 列表项类型定义
+ * List item type definition
  */
 export interface TimeItem {
   id: string;
-  icon: string;
+  icon: Icon;
   title: string;
   subtitle: string;
   accessory?: string;
-  value?: string;
+  value: string;
 }
 
 /**
- * 时间转换结果类型
+ * Time conversion result type
  */
 export type ConversionResult = TimeItem[];

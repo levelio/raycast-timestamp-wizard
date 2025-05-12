@@ -32,8 +32,6 @@
 - `yyyy-MM-dd HH:mm` (e.g., 2024-05-13 15:00)
 - `yyyy/MM/dd HH:mm:ss` (e.g., 2024/05/13 15:00:00)
 - `yyyy/MM/dd HH:mm` (e.g., 2024/05/13 15:00)
-- `yyyy年MM月dd日 HH:mm:ss` (e.g., 2024年05月13日 15:00:00)
-- `yyyy年MM月dd日 HH:mm` (e.g., 2024年05月13日 15:00)
 - `MM/dd/yyyy HH:mm:ss` (e.g., 05/13/2024 15:00:00)
 - `MM/dd/yyyy HH:mm` (e.g., 05/13/2024 15:00)
 - `dd/MM/yyyy HH:mm:ss` (e.g., 13/05/2024 15:00:00)

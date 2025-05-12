@@ -3,14 +3,17 @@ import { TimeItem as TimeItemType } from "../types";
 import { useClipboard } from "../hooks/useClipboard";
 
 /**
- * 时间项显示组件
+ * Time Item Display Component
  */
 export const TimeItem: React.FC<{ item: TimeItemType }> = ({ item }) => {
   const { copyToClipboard } = useClipboard();
 
+  if (!item.value) {
+    return null;
+  }
+
   return (
     <List.Item
-      key={item.id}
       icon={item.icon}
       title={item.title}
       subtitle={item.subtitle}
@@ -21,7 +24,7 @@ export const TimeItem: React.FC<{ item: TimeItemType }> = ({ item }) => {
             <Action.CopyToClipboard
               title="Copy to Clipboard"
               content={item.value}
-              onCopy={() => copyToClipboard(item.value!)}
+              onCopy={() => copyToClipboard(item.value)}
             />
           )}
         </ActionPanel>

@@ -6,29 +6,29 @@ import { useTimeConverter } from "./hooks/useTimeConverter";
 import { ConversionResult } from "./types";
 
 /**
- * 主命令组件
+ * Main Command Component
  */
 export default function Command() {
   const [searchText, setSearchText] = useState<string>("");
   const { isShowingCurrentTime, setIsShowingCurrentTime, currentTimeItems } = useCurrentTime();
   const { conversionResult, convertTime } = useTimeConverter();
 
-  // 处理搜索文本变化
+  // Handle search text changes
   const handleSearchTextChange = (text: string) => {
     setSearchText(text);
 
-    // 如果输入为空，切换到显示当前时间模式
+    // If input is empty, switch to current time display mode
     if (!text.trim()) {
       setIsShowingCurrentTime(true);
       return;
     }
 
-    // 如果有输入，关闭当前时间模式，进行转换
+    // If there's input, turn off current time mode and perform conversion
     setIsShowingCurrentTime(false);
     convertTime(text);
   };
 
-  // 确定当前应该显示哪些项目
+  // Determine which items should be displayed
   const displayItems: ConversionResult = isShowingCurrentTime ? currentTimeItems : conversionResult;
 
   return (

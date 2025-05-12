@@ -3,28 +3,28 @@ import { ConversionResult } from "../types";
 import { generateCurrentTimeItems } from "../utils/formatTime";
 
 /**
- * 管理当前时间的更新和显示
- * @returns 当前时间相关的状态和控制函数
+ * Manage current time updates and display
+ * @returns Current time related states and control functions
  */
 export const useCurrentTime = () => {
   const [isShowingCurrentTime, setIsShowingCurrentTime] = useState<boolean>(true);
   const [currentTimeItems, setCurrentTimeItems] = useState<ConversionResult>([]);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // 设置当前时间和定时器
+  // Setup current time and timer
   useEffect(() => {
-    // 初始显示当前时间
+    // Initially display current time
     if (isShowingCurrentTime) {
       setCurrentTimeItems(generateCurrentTimeItems());
     }
 
-    // 清理之前的定时器(如果存在)
+    // Clean up previous timer (if exists)
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
 
-    // 只有在显示当前时间模式下才启动定时器
+    // Only start timer when in current time display mode
     if (isShowingCurrentTime) {
       timerRef.current = setInterval(() => {
         setCurrentTimeItems(generateCurrentTimeItems());

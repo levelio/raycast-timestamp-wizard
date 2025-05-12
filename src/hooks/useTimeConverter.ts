@@ -2,34 +2,36 @@ import { useState } from "react";
 import { ConversionResult } from "../types";
 import { parseTimestamp, parseTimeString, isTimestamp } from "../utils/parseTime";
 import { timestampToDateFormats, dateToTimestamps } from "../utils/formatTime";
+import { TIME_FORMATS } from "../constants/timeFormats";
+import { Icon } from "@raycast/api";
 
 /**
- * 时间转换hook
- * @returns 时间转换相关的状态和函数
+ * Time conversion hook
+ * @returns Time conversion related states and functions
  */
 export const useTimeConverter = () => {
   const [conversionResult, setConversionResult] = useState<ConversionResult>([]);
 
   /**
-   * 处理时间转换
-   * @param input 用户输入的字符串
-   * @returns 转换是否成功
+   * Handle time conversion
+   * @param input User input string
+   * @returns Whether the conversion was successful
    */
   const convertTime = (input: string): boolean => {
     if (!input.trim()) {
       return false;
     }
 
-    // 判断输入类型并处理
+    // Determine input type and process accordingly
     if (isTimestamp(input)) {
-      // 解析时间戳
+      // Parse timestamp
       const timestampDate = parseTimestamp(input);
       if (timestampDate) {
         setConversionResult(timestampToDateFormats(timestampDate));
         return true;
       }
     } else {
-      // 解析时间字符串
+      // Parse time string
       const timeDate = parseTimeString(input);
       if (timeDate) {
         setConversionResult(dateToTimestamps(timeDate));
@@ -37,20 +39,17 @@ export const useTimeConverter = () => {
       }
     }
 
-    // 无法解析，显示错误
-    if (input.trim().length > 3) {
-      setConversionResult([
-        {
-          id: "invalid-input",
-          icon: "exclamationmark",
-          title: "Invalid Input",
-          subtitle: "Please enter a valid timestamp or date format",
-          accessory: "",
-        },
-      ]);
-    } else {
-      setConversionResult([]);
-    }
+    // Unable to parse, display error
+    setConversionResult([
+      {
+        id: "invalid-input",
+        icon: Icon.ExclamationMark,
+        title: "Invalid Input",
+        subtitle: `Please enter a valid timestamp or date format. Supported: unix timestamp, ISO 8601, ${TIME_FORMATS.filter(f => f !== "ISO").slice(0, 2).join(", ")}...`,
+        accessory: "See all formats",
+        value: `Supported formats: unix timestamp (seconds/milliseconds), ISO 8601, ${TIME_FORMATS.filter(f => f !== "ISO").join(", ")}`,
+      },
+    ]);
 
     return false;
   };

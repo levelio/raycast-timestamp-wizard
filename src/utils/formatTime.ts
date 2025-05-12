@@ -4,15 +4,15 @@ import { TIME_FORMATS } from "../constants/timeFormats";
 import { TimeItem, ConversionResult } from "../types";
 
 /**
- * 生成当前时间的展示列表
- * @returns 当前时间的时间戳和多种格式的时间
+ * Generate current time display list
+ * @returns Current timestamp and time in multiple formats
  */
 export const generateCurrentTimeItems = (): ConversionResult => {
   const now = new Date();
   const unixSeconds = getUnixTime(now);
   const unixMilliseconds = now.getTime();
 
-  // 生成当前时间的时间戳部分
+  // Generate timestamp portion of the current time
   const timestampItems: TimeItem[] = [
     {
       id: "current-unix-seconds",
@@ -32,7 +32,7 @@ export const generateCurrentTimeItems = (): ConversionResult => {
     },
   ];
 
-  // 生成当前时间的各种格式
+  // Generate various formats of current time
   const timeFormatItems = TIME_FORMATS.map((formatStr, index) => {
     let formattedDate;
     if (formatStr === "ISO") {
@@ -55,9 +55,9 @@ export const generateCurrentTimeItems = (): ConversionResult => {
 };
 
 /**
- * 将时间戳转换为多种时间格式
- * @param date 日期对象
- * @returns 多种格式的时间列表
+ * Convert timestamp to multiple time formats
+ * @param date Date object
+ * @returns List of time in various formats
  */
 export const timestampToDateFormats = (date: Date): ConversionResult => {
   return TIME_FORMATS.map((formatStr, index) => {
@@ -80,9 +80,9 @@ export const timestampToDateFormats = (date: Date): ConversionResult => {
 };
 
 /**
- * 将日期转换为时间戳格式
- * @param date 日期对象
- * @returns 秒级和毫秒级时间戳列表
+ * Convert date to timestamp formats
+ * @param date Date object
+ * @returns List of second-level and millisecond-level timestamps
  */
 export const dateToTimestamps = (date: Date): ConversionResult => {
   const unixSeconds = getUnixTime(date);

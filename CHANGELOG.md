@@ -1,6 +1,6 @@
 # TimeStamp Wizard Changelog
 
-## [1.0.0] - 2024-05-12
+## [1.0.0] - {PR_MERGE_DATE}
 ### Added
 - Initial release of TimeStamp Wizard
 - Support for converting between timestamps and formatted dates
